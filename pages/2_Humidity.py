@@ -6,14 +6,17 @@ st.title("Humidity Monitoring")
 # Slider ความชื้น 0-100%
 humidity = st.slider(
     "Humidity (%)",
-    min_value=0.0,
-    max_value=100.0,
+    min_value=-100.0,
+    max_value=200.0,
     value=50.0,
     step=1.0
 )
 
-# เรียกฟังก์ชันตรวจสอบ
-status = classify_humidity(humidity)
+try:
+    status = classify_humidity(humidity)
 
-st.write(f"Humidity: {humidity}%")
-st.write(f"Status: {status}")
+    st.write(f"Humidity: {humidity}%")
+    st.write(f"Status: {status}")
+
+except ValueError:
+    st.error("ValueError")
